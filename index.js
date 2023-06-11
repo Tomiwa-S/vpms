@@ -2,7 +2,7 @@ var mq2 = document.getElementById("mq2");
 var mq7 = document.getElementById("mq7");
 var mq135 = document.getElementById("mq135");
 var sent = false;
-var threshold = 3;
+var threshold = 1;
 async function getThingSpeakData() {
     const url = "https://api.thingspeak.com/channels/2077841/feeds.json";
     const post = await fetch(url).then((res) => res.json());
@@ -17,6 +17,7 @@ async function getThingSpeakData() {
     mq135.innerHTML = field3[99];
     if(field1[99]>=threshold&&!sent){
     Threshold();
+     alert("Threshold Exceeded");
     };
 };
 setInterval(getThingSpeakData,500);
