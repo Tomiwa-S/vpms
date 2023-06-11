@@ -1,11 +1,9 @@
 var mq2 = document.getElementById("mq2");
 var mq7 = document.getElementById("mq7");
 var mq135 = document.getElementById("mq135");
-
 async function getThingSpeakData() {
     const url = "https://api.thingspeak.com/channels/2077841/feeds.json";
     const post = await fetch(url).then((res) => res.json());
-    console.log(post);
     var field1 =[], field2 =[], field3 =[];
     const looper = (arr, pusher, field)=>arr.forEach((x)=>pusher.push(x[field]));
     looper(post["feeds"],field1,"field1");
@@ -15,39 +13,17 @@ async function getThingSpeakData() {
     mq2.innerHTML = mean(field1);
     mq7.innerHTML = mean(field2);
     mq135.innerHTML = mean(field3);
-    value();
-    // var meter = document.getElementsByTagName("meter")[0];
-    // var span = meter.previousElementSibling.previousElementSibling;
-    // console.log(span.innerHTML);
-    // meter.setAttribute("value",span.innerHTML);
-    
 };
-getThingSpeakData();
+setInterval(getThingSpeakData,500);
 Email.send({
-  SecureToken : "8224870a-f74f-4efa-a894-adf57fa2f30b",
-  To : 'timmeysam@gmail.com',
-  From : "ermasterde@gmail.com",
-  Subject : "ALERT- Vehicle Pollution Threshold exceeded",
-  Body : "Hi Tomiwa \n You should consider having your vehicle checked as it voiolates the FRSC pollution limit.\n This is a warning. Your data would soon be sent to the FRSC for prosecution if no action is taken to mitigate this."
-}).then(
-message => alert(message)
-);
-function ch(){
-    var meter = document.getElementsByTagName("meter")[0];
-    var span = meter.previousElementSibling.previousElementSibling;
-    console.log(span.innerHTML);
-    // return meter.setAttribute("value",span.innerHTML);
-    console.log(meter);
-    console.log(span);
-}
-function value(){
-    var meter = document.getElementsByTagName("meter");
-    var arr = Object.entries(meter);
-    arr.forEach((x)=> arr.indexOf(x)%2!=0??console.log(x[1]));
-    // console.log(typeof(arr));
-    // console.log(arr);
-    // meter.forEach((x)=>{
-    //     var span = x.previousElementSibling.previousElementSibling;
-    //     meter.setAttribute("value",span.innerHTML);
-    // })
-}
+    Host : "smtp.elasticemail.com",
+    Username : "timmeysam@gmail.com",
+    Password : "C009E876011C08AF3AB0E2993A272DCAF312",
+    To : 'ermasterde@gmail.com',
+    From : "timmeysam@gmail.com",
+    Subject : "ALERT- Vehicle Pollution Threshold exceeded",
+    Body : "Hi Tomiwa \n You should consider having your vehicle checked as it voiolates the FRSC pollution limit.\n This is a warning. Your data would soon be sent to the FRSC for prosecution if no action is taken to mitigate this."
+  }).then(
+  message => alert(message)
+  );
+
