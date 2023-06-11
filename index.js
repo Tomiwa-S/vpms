@@ -24,16 +24,14 @@ async function getThingSpeakData() {
 };
 getThingSpeakData();
 Email.send({
-    Host : "smtp.elasticemail.com",
-    Username : "ermasterde@gmail.com",
-    Password : "938D844A340AE79154804D9FBAAE36FF3ADF",
-    To : 'timmeysam@gmail.com',
-    From : "vpms@gmail.com",
-    Subject : "TALERT- Vehicle Pollution Threshold exceeded",
-    Body : "Hi Tomiwa \n You should consider having your vehicle checked as it voiolates the FRSC pollution limit.\n This is a warning. Your data would soon be sent to the FRSC for prosecution if no action is taken to mitigate this."
-  }).then(
-  message => alert(message)
-  );
+  SecureToken : "8224870a-f74f-4efa-a894-adf57fa2f30b",
+  To : 'timmeysam@gmail.com',
+  From : "vpms@gmail.com",
+  Subject : "ALERT- Vehicle Pollution Threshold exceeded",
+  Body : "Hi Tomiwa \n You should consider having your vehicle checked as it voiolates the FRSC pollution limit.\n This is a warning. Your data would soon be sent to the FRSC for prosecution if no action is taken to mitigate this."
+}).then(
+message => alert(message)
+);
 function ch(){
     var meter = document.getElementsByTagName("meter")[0];
     var span = meter.previousElementSibling.previousElementSibling;
