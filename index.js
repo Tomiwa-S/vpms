@@ -3,7 +3,7 @@ var mq2 = document.getElementById("mq2");
 var mq7 = document.getElementById("mq7");
 var mq135 = document.getElementById("mq135");
 var sent = false;
-var threshold = 1;
+var threshold = 15;
 async function getThingSpeakData() {
     const url = "https://api.thingspeak.com/channels/2077841/feeds.json";
     const post = await fetch(url).then((res) => res.json());
