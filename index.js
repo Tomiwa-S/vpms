@@ -9,7 +9,7 @@ var mq135b = false;
 async function getThingSpeakData() {
     const url = "https://api.thingspeak.com/channels/2077841/feeds.json";
     const post = await fetch(url).then((res) => res.json());
-    var field1 =[], field2 =[], field3 =[];
+    var field1 =[], field2 =[], field3 =[],field4=[];
     const looper = (arr, pusher, field)=>arr.forEach((x)=>pusher.push(x[field]));
     looper(post["feeds"],field1,"field1");
     looper(post["feeds"],field2,"field2");
