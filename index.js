@@ -3,9 +3,9 @@ var mq2 = document.getElementById("mq2");
 var mq7 = document.getElementById("mq7");
 var mq135 = document.getElementById("mq135");
 var sent = false;
-var mq2 = false;
-var mq7 = false;
-var mq135 = false;
+var mq2b = false;
+var mq7b = false;
+var mq135b = false;
 async function getThingSpeakData() {
     const url = "https://api.thingspeak.com/channels/2077841/feeds.json";
     const post = await fetch(url).then((res) => res.json());
@@ -20,17 +20,17 @@ async function getThingSpeakData() {
     looper(post["feeds"],field4,"field4");
     var thres = field4[99];
     if(thres>0){
-        if(thres==1 && !mq2){
+        if(thres==1 && !mq2b){
             Threshold("LPG");
-            mq2=true;
+            mq2b=true;
         }
-        else if(thres==2 && !mq7){
+        else if(thres==2 && !mq7b){
             Threshold("CO");
-            mq7=true;
+            mq7b=true;
         }
-        else if(thres==3 && !mq135){
+        else if(thres==3 && !mq135b){
             Threshold("CO2");
-            mq135=true;
+            mq135b=true;
         }
     }
 };
