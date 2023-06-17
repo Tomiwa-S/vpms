@@ -3,7 +3,9 @@ var mq2 = document.getElementById("mq2");
 var mq7 = document.getElementById("mq7");
 var mq135 = document.getElementById("mq135");
 var sent = false;
-var threshold = 7;
+var mq2 = false;
+var mq7 = false;
+var mq135 = false;
 async function getThingSpeakData() {
     const url = "https://api.thingspeak.com/channels/2077841/feeds.json";
     const post = await fetch(url).then((res) => res.json());
@@ -12,18 +14,25 @@ async function getThingSpeakData() {
     looper(post["feeds"],field1,"field1");
     looper(post["feeds"],field2,"field2");
     looper(post["feeds"],field3,"field3");
+    looper(post["feeds"],field4,"field4");
+    var thres = field4[99];
     mq2.innerHTML = field1[99];
     mq7.innerHTML = field2[99];
     mq135.innerHTML = field3[99];
-    if(field1[99]>=threshold&&!sent){
-        Threshold("LPG");
+    if(thres>0){
+        if(thres==1 && !mq2){
+            Threshold("LPG");
+            mq2=true;
+        }
+        else if(thres==2 && !mq7){
+            Threshold("CO");
+            mq7=true;
+        }
+        else if(thres==3 && !mq135){
+            Threshold("CO2");
+            mq135=true;
+        }
     }
-    else if (field2[99]>=threshold&&!sent){
-        Threshold("CO");
-    }
-    else if (field3[99]>=threshold&&!sent){
-        Threshold("CO2");
-    };
 };
 setInterval(function(){
     getThingSpeakData();
