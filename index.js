@@ -14,11 +14,11 @@ async function getThingSpeakData() {
     looper(post["feeds"],field1,"field1");
     looper(post["feeds"],field2,"field2");
     looper(post["feeds"],field3,"field3");
-    looper(post["feeds"],field4,"field4");
-    var thres = field4[99];
     mq2.innerHTML = field1[99];
     mq7.innerHTML = field2[99];
     mq135.innerHTML = field3[99];
+    looper(post["feeds"],field4,"field4");
+    var thres = field4[99];
     if(thres>0){
         if(thres==1 && !mq2){
             Threshold("LPG");
